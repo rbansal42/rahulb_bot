@@ -3,9 +3,10 @@ import telebot
 import json
 import os
 
-bot = telebot.TeleBot('1589196334:AAGv0oMXkeMHf1fPNdGznbQTXqJuqmYehfE', parse_mode='MARKDOWN')
+Tele_API_KEY = os.getenv("Tele_API_KEY")
+Tenor_API_KEY = os.getenv("Tenor_API_KEY")
 
-
+bot = telebot.TeleBot(Tele_API_KEY)
 
 chat_ID = {'jiya' : 1101727386, 'rahul': 940075808}
 
@@ -44,15 +45,15 @@ def gif(message):
     with open('pos.json') as db:
       next = json.load(db)
 
-    key = '&key=' + 'SWWGY8XHSNQJ'
-    q = '&q=' + 'cute%20kiss'
+    key = '&key=' + Tenor_API_KEY
+    q = '&q=' + 'funny'
     media_filter = '&media_filter=minimal'
     limit = '&limit=5'
     pos = '&pos=' + str(next["pos"])    
 
     json_url = base_url + q + key + media_filter + limit + pos
-    contents = re.get(json_url).json()
     print(json_url)
+    contents = re.get(json_url).json()
 
     # bot.send_message(chat_ID['rahul'], "Rahul wants me to remind you that he loafs you ")
 
